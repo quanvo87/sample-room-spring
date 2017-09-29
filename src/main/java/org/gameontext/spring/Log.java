@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  * Wrapper to provide a single logger with a consistent format that helps
  * identify different endpoints in the messages
  */
-public class Log {
+class Log {
     private final static Logger log = Logger.getLogger("org.gameontext.sample");
 
     private static final String log_format = ": %-8x : %s";

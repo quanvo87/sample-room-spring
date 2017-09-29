@@ -28,7 +28,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
  *
  * @see RoomImplementation
  */
-public class RoomDescription {
+class RoomDescription {
 
     private final JsonObject EMPTY_COMMANDS = Json.createObjectBuilder().build();
     private final JsonArray EMPTY_INVENTORY = Json.createArrayBuilder().build();
@@ -37,10 +37,10 @@ public class RoomDescription {
     private String fullName = "A room with the default fullName still set in the source";
     private String description = "A room that still has the default description set in the source";
 
-    private Map<String, String> commands = new ConcurrentHashMap<>();
+    private final Map<String, String> commands = new ConcurrentHashMap<>();
     private JsonObject commandObj = null;
 
-    private Set<String> items = new CopyOnWriteArraySet<>();
+    private final Set<String> items = new CopyOnWriteArraySet<>();
     private JsonArray itemObj = null;
 
     public RoomDescription() {
@@ -104,9 +104,7 @@ public class RoomDescription {
             return EMPTY_COMMANDS;
         } else if (obj == null) {
             JsonObjectBuilder newCommandObj = Json.createObjectBuilder();
-            commands.entrySet().forEach(e -> {
-                newCommandObj.add(e.getKey(), e.getValue());
-            });
+            commands.forEach((key, value) -> newCommandObj.add(key, value));
             obj = commandObj = newCommandObj.build();
         }
 
@@ -139,9 +137,7 @@ public class RoomDescription {
             return EMPTY_INVENTORY;
         } else if (arr == null) {
             JsonArrayBuilder newItemArr = Json.createArrayBuilder();
-            items.forEach(s -> {
-                newItemArr.add(s);
-            });
+            items.forEach(newItemArr::add);
             arr = itemObj = newItemArr.build();
         }
 
@@ -160,13 +156,10 @@ public class RoomDescription {
 
     @Override
     public String toString() {
-        StringBuilder s = new StringBuilder();
-        s.append("name=").append(name);
-        s.append(", fullName=").append(fullName);
-        s.append(", description=").append(description);
-        s.append(", commands=").append(commands);
-        s.append(", items=").append(items);
-
-        return s.toString();
+        return "name=" + name +
+                ", fullName=" + fullName +
+                ", description=" + description +
+                ", commands=" + commands +
+                ", items=" + items;
     }
 }

@@ -39,7 +39,6 @@ public class Message {
      */
     public static final String USERNAME = "username";
 
-    ;
     /**
      * JSON element specifying the content of message.
      */
@@ -68,7 +67,7 @@ public class Message {
     /**
      * Incrementing message id for bookmark
      */
-    private static AtomicLong bookmark = new AtomicLong(0);
+    private static final AtomicLong bookmark = new AtomicLong(0);
     /**
      * Target for the message
      *
@@ -360,7 +359,6 @@ public class Message {
      * @param roomId   Id of target room
      * @param userId   Id of user entering the room
      * @param username username for user entering the room
-     * @param version  version negotiated with mediator
      * @return constructed message
      */
     public static Message createRoomGoodbye(String roomId, String userId, String username) {

@@ -25,19 +25,19 @@ import java.util.logging.Level;
  * is defined in {@link SocketHandler}, with {@link Message} as the text-based
  * payload being sent on the wire.
  */
-public class RoomImplementation {
+class RoomImplementation {
 
-    public static final String LOOK_UNKNOWN = "It doesn't look interesting";
-    public static final String UNKNOWN_COMMAND = "This room is a basic model. It doesn't understand `%s`";
-    public static final String UNSPECIFIED_DIRECTION = "You didn't say which way you wanted to go.";
-    public static final String UNKNOWN_DIRECTION = "There isn't a door in that direction (%s)";
-    public static final String GO_FORTH = "You head %s";
-    public static final String HELLO_ALL = "%s is here";
-    public static final String HELLO_USER = "Welcome!";
-    public static final String GOODBYE_ALL = "%s has gone";
-    public static final String GOODBYE_USER = "Bye!";
+    private static final String LOOK_UNKNOWN = "It doesn't look interesting";
+    private static final String UNKNOWN_COMMAND = "This room is a basic model. It doesn't understand `%s`";
+    private static final String UNSPECIFIED_DIRECTION = "You didn't say which way you wanted to go.";
+    private static final String UNKNOWN_DIRECTION = "There isn't a door in that direction (%s)";
+    private static final String GO_FORTH = "You head %s";
+    private static final String HELLO_ALL = "%s is here";
+    private static final String HELLO_USER = "Welcome!";
+    private static final String GOODBYE_ALL = "%s has gone";
+    private static final String GOODBYE_USER = "Bye!";
 
-    private RoomDescription roomDescription = new RoomDescription();
+    private final RoomDescription roomDescription = new RoomDescription();
 
     public RoomImplementation() {
         roomDescription.addCommand("/ping", "Does this work?");
@@ -207,7 +207,7 @@ public class RoomImplementation {
      * @param lowerDirection String read from the provided message
      * @return exit id or null
      */
-    protected String getExitId(String lowerDirection) {
+    private String getExitId(String lowerDirection) {
         if (lowerDirection == null) {
             return null;
         }
@@ -238,7 +238,7 @@ public class RoomImplementation {
      * @param exitId The exitId in lower case
      * @return A pretty version of the direction for use in the exit message.
      */
-    protected String prettyDirection(String exitId) {
+    private String prettyDirection(String exitId) {
         switch (exitId) {
             case "n":
                 return "North";
@@ -254,7 +254,4 @@ public class RoomImplementation {
         }
     }
 
-    public boolean ok() {
-        return true;
-    }
 }

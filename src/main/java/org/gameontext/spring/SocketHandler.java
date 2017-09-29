@@ -30,11 +30,11 @@ import java.util.HashMap;
 import java.util.logging.Level;
 
 @Component
-public class SocketHandler extends TextWebSocketHandler {
+class SocketHandler extends TextWebSocketHandler {
 
-    private RoomImplementation roomImplementation = new RoomImplementation();
+    private final RoomImplementation roomImplementation = new RoomImplementation();
 
-    private HashMap<String, WebSocketSession> sessions = new HashMap<>();
+    private final HashMap<String, WebSocketSession> sessions = new HashMap<>();
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
